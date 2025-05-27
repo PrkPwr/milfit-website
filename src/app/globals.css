@@ -8,49 +8,119 @@
   }
   
   body {
-    @apply bg-gradient-to-br from-slate-50 to-blue-50;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100;
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(120, 119, 198, 0.3) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(255, 255, 255, 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5;
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 hover:from-blue-700 hover:via-purple-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5;
+    @apply bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 font-bold py-4 px-8 rounded-2xl border-2 border-gray-200/50 shadow-xl hover:shadow-2xl hover:border-blue-300/50 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden;
+  }
+  
+  .btn-secondary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50 opacity-0 hover:opacity-100 transition-opacity duration-300;
   }
   
   .card {
-    @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8 hover:shadow-blue-500/10 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden;
+  }
+  
+  .card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 opacity-0 hover:opacity-100 transition-opacity duration-500;
   }
   
   .stat-card {
-    @apply bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden;
+    @apply bg-gradient-to-br from-white/95 via-blue-50/30 to-indigo-50/50 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/30 p-8 hover:shadow-blue-500/20 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 relative overflow-hidden;
   }
   
   .stat-card::before {
     content: '';
-    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500;
+    @apply absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500;
+  }
+  
+  .stat-card::after {
+    content: '';
+    @apply absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-blue-400/10 via-purple-400/10 to-pink-400/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700;
   }
   
   .activity-item {
-    @apply flex items-center space-x-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:shadow-md transition-all duration-200 hover:border-blue-200;
+    @apply flex items-center space-x-4 p-6 bg-gradient-to-r from-white/80 via-blue-50/50 to-indigo-50/30 backdrop-blur-sm rounded-2xl border border-white/30 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:border-blue-300/50 transform hover:-translate-y-1 hover:scale-[1.02];
   }
   
   .sidebar-link {
-    @apply flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-200 font-medium;
+    @apply flex items-center space-x-4 px-6 py-4 rounded-2xl text-gray-700 hover:bg-gradient-to-r hover:from-blue-100/80 hover:via-indigo-100/60 hover:to-purple-100/40 hover:text-blue-800 transition-all duration-300 font-semibold transform hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg;
   }
   
   .sidebar-link.active {
-    @apply bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 shadow-sm;
+    @apply bg-gradient-to-r from-blue-200/80 via-indigo-200/60 to-purple-200/40 text-blue-800 shadow-xl shadow-blue-500/20 scale-105 font-bold;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-black;
   }
   
   .admin-header {
-    @apply bg-white/80 backdrop-blur-lg shadow-lg border-b border-gray-200/50;
+    @apply bg-white/70 backdrop-blur-xl shadow-2xl border-b border-white/30;
+  }
+  
+  .floating-orb {
+    @apply absolute rounded-full blur-3xl opacity-20 animate-pulse;
+  }
+  
+  .floating-orb-1 {
+    @apply w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 top-10 -right-48;
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .floating-orb-2 {
+    @apply w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 bottom-10 -left-40;
+    animation: float 25s ease-in-out infinite reverse;
+  }
+  
+  .floating-orb-3 {
+    @apply w-64 h-64 bg-gradient-to-r from-indigo-400 to-blue-400 top-1/2 left-1/4;
+    animation: float 30s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-30px) rotate(120deg); }
+    66% { transform: translateY(15px) rotate(240deg); }
+  }
+  
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  .pulse-ring {
+    @apply absolute inset-0 rounded-full border-4 border-blue-400/30;
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+  
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
   }
 } 
